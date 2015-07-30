@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'session/new'
-
-  get 'session/create'
 
   resources :movies
   resources :users, only: [:new, :create]
-  resources :sessions, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
   root 'movies#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
