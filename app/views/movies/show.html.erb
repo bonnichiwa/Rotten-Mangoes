@@ -1,9 +1,9 @@
 <%= image_tag @movie.poster_image_url %>
 <h2><%= @movie.title %> </h2> 
 <h5><%= link_to "Edit", edit_movie_path(@movie) %> | <%= link_to "Delete", @movie, method: :delete, data: { confirm: "Are you 100% sure?" } %> </h5>
-<h3><%= @movie.release_date %></h3>
+<h3>Release Date: <%= formatted_date(@movie.release_date) %></h3>
 <h4> Director: <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes </h4>
-<h4> Rotten Mangoers Average Review: <%= @movie.review_average %>/10 </h4>
+<h4> Rotten Mangoes Rating: <%= @movie.review_average %>/10 </h4>
 <p><%= @movie.description %></p>
 
 <hr>
@@ -13,7 +13,7 @@
   <% @movie.reviews.each do |review| %>
     <p><%= review.text %></p>
     <p><%= review.rating_out_of_ten %>/10</p>
-    <small>Review written by: <%= review.user.email %></small><br/>
+    <small>Review written by: <%= review.user.full_name %></small><br/>
   <% end %>
   <p><%= link_to "Write a review!", new_movie_review_path(@movie) %></p>
 <% else %>

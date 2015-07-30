@@ -7,8 +7,8 @@
 <% @movies.each do |movie| %>
   <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h2><%= movie.review_average %>/10</h2>
-  <h3><%= movie.release_date %></h3>
+  <h2>Rotten Mangoes Rating: <%= movie.review_average %>/10</h2>
+  <h3>Release Date: <%= formatted_date(movie.release_date) %></h3>
   <h4>Director: <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes </h4>
   <p><%= movie.description %></p>
 
