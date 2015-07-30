@@ -10,8 +10,9 @@ class SessionController < ApplicationController
       session[:user_id] = user.user_id
       redirect_to movies_path
     else
+      notice: "Log in failed!"
       render :new
     end
   end
-  
+
 end
