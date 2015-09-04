@@ -41,3 +41,5 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 # gem 'mini_magick', '~> 4.2.7'
 gem 'rmagick'
+
+gem 'kaminari'

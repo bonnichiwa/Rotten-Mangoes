@@ -4,6 +4,7 @@ class Movie < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+
   validates :title, :director, :description, :release_date, presence: true
   validates :runtime_in_minutes, numericality: { only_integer: true }
 
@@ -14,6 +15,14 @@ class Movie < ActiveRecord::Base
       reviews.sum(:rating_out_of_ten)/reviews.size
     else
       return 0
+    end
+  end
+
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      Movie.all
     end
   end
 

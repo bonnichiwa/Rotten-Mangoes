@@ -1,18 +1,41 @@
+<style>
+
+body {
+  font-family: Helvetica;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 100;
+  text-align: center;
+}
+
+h1 {
+  font-family: Helvetica;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 100;
+}
+
+</style>
+
 <h1> Welcome to Rotten Mangoes! </h1> 
 
 <%= link_to "Submit a movie!", new_movie_path %> 
 
 <hr>
 
-<% @movies.each do |movie| %>
-  <%= link_to image_tag movie.image_url(:thumb) if movie.image? %>
-  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h2>Rotten Mangoes Rating: <%= movie.review_average %>/10</h2>
-  <h3>Release Date: <%= formatted_date(movie.release_date) %></h3>
-  <h4>Director: <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes </h4>
-  <p><%= movie.description %></p>
+Search:
+<%= form_tag(movies_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Movies" %>
+<%= submit_tag "Search" %>
+<% end %>
 
 <hr>
 
-<% end %> 
+
+
+<%= render 'movies' %>
+
+
+<%= paginate @movies %>
+<%= page_entries_info @movies %>
+

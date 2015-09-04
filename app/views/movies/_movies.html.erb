@@ -1,0 +1,50 @@
+<% @movies.each do |movie| %>
+
+<style>
+table, th, td {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin: auto;
+}
+th, td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: left;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 100;
+    line-height: 15px;  
+}
+</style>
+
+
+<table style="width:90%">
+  <tr>
+    <th colspan="1">Movie:</th>
+    <th colspan="1">Rotten Mangoes Rating:</th>
+    <th colspan="1">Release Date:</th>
+    <th colspan="1">Director:</th>
+    <th colspan="1">Runtime:</th>
+    <th colspan="1">Plot:</th>
+  </tr>
+  <tr>
+  <%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) %>
+  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
+  </tr>
+  <tr>
+  <td><%= link_to movie.title, movie_path(movie) %></td>
+  <td><%= movie.review_average %>/10</td>
+  <td><%= formatted_date(movie.release_date) %></td>
+  <td><%= movie.director %></td>
+  <td><%= movie.runtime_in_minutes %> minutes</td>
+  <td><p><%= movie.description %></p></td>
+</tr>
+</table>
+
+<hr>
+
+<% end %> 

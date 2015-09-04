@@ -1,7 +1,12 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    @movies = Movie.search(params[:search])
+    if @movies.class == Array
+      @movies = Kaminari.paginate_array(@posts).page(params[:page]).per(5) 
+    else
+      @movies = @movies.page(params[:page]).per(5) # if @posts is AR::Relation object 
+    end
   end
 
   def show
